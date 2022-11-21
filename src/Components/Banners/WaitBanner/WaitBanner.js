@@ -1,7 +1,7 @@
 import ErrorBanner from "../ErrorBanner/ErrorBanner";
 import LoadingBanner from "../LoadingBanner/LoadingBanner";
 
-function WaitBanner(err, loading) {
+function WaitBanner({ err, loading }) {
   if (err) {
     return <ErrorBanner text={err} />;
   }

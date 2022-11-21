@@ -1,4 +1,5 @@
 const ArticlesModel = {
+  single: [],
   dashboard: {},
   search: {},
 };

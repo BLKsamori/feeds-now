@@ -9,7 +9,8 @@ function useForm(model) {
   const updateValue = (e) => {
     const val = e.target.value;
     const name = e.target.name;
-
+    console.log({ val });
+    console.log({ name });
     let newVal = { ...fieldVal };
     newVal[name].value = val;
 

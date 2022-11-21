@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import ACTION_ARTICLES from "../../../Context/ACTION_ARTICLES";
+import ArticlesContext from "../../../Context/ArticlesContext";
 import "./ArticleCard.css";
+import Button from "@mui/material/Button";
 
 function ArticleCard({ article }) {
+  const { setArticles } = useContext(ArticlesContext);
   return (
     <div className="ArticleCard">
       <div className="sideA">
@@ -23,9 +28,20 @@ function ArticleCard({ article }) {
       </div>
 
       <div className="articleLink">
-        <a href={article.url} target="_blank noopener">
-          <button>Read More...</button>
-        </a>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() =>
+              setArticles({
+                type: ACTION_ARTICLES.SINGLE,
+                payload: article,
+              })
+            }
+          >
+            Read More...
+          </Button>
+        </div>
       </div>
     </div>
   );

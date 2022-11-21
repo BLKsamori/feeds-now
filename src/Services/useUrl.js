@@ -14,7 +14,7 @@ function useUrl() {
       const val = data[key];
       switch (key) {
         case "question":
-          if (val === "" || val === NaN || val === undefined) {
+          if (val === "" || isNaN(val) || val === undefined) {
             setDataStatus(false);
             console.log("question NAN");
             console.log(val);
@@ -22,7 +22,7 @@ function useUrl() {
           break;
 
         case "Info":
-          if (val === "" || val === NaN || val === undefined) {
+          if (val === "" || isNaN(val) || val === undefined) {
             setDataStatus(false);
             console.log("Info NAN");
           }
@@ -32,9 +32,13 @@ function useUrl() {
           break;
       }
     }
-    const Info = data?.Info ? "/" + data?.Info : "";
+
+    const Info = "/" + data?.Info;
     const question = data?.question ? "?q=" + data?.question : "";
-    const newUrl = Info + question;
+    const sortBy = data?.sortBy ? "&sortBy=" + data?.sortBy : "";
+    const sources = data?.sources ? "sources=" + data?.sources : "";
+    const category = data?.category ? "category=" + data?.category : "";
+    const newUrl = Info + question + sortBy + sources + category;
     const finalUrl = appConfig.baseUrl + newUrl + appConfig.APIkey;
     console.log(finalUrl);
     setUrl(finalUrl);

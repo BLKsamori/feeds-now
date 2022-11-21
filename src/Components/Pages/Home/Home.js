@@ -8,7 +8,7 @@ function Home() {
   const newArticles = articles.dashboard;
   return (
     <div className="Home">
-      <h1>Feeds Now</h1>
+      <h1>Todays News</h1>
       <ArticlesList articlesList={newArticles} />
     </div>
   );

@@ -7,7 +7,7 @@ import ObjKeysList from "../../../Services/getObjKeys";
 
 function Feeds() {
   const { articles } = useContext(ArticlesContext);
-  const newArticles = ObjKeysList(articles.search).length
+  const newArticles = Object.entries(articles.search).length
     ? articles.search
     : articles.dashboard;
   return (
