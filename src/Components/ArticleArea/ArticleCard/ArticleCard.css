@@ -1,0 +1,64 @@
+.ArticleCard {
+  font-size: inherit;
+  flex-basis: 30%;
+  width: 100%;
+  height: 10em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* border: 0.1em solid black; */
+  position: relative;
+  overflow: hidden;
+  background: var(--card-col);
+  gap: 0;
+  justify-content: space-between;
+  box-shadow: var(--card-b-shadow);
+}
+.sideA,
+.sideB {
+  overflow: hidden;
+  display: block;
+  pointer-events: none;
+}
+.sideA {
+  flex-basis: 55%;
+  margin: 1em;
+}
+.sideB {
+  flex-basis: 35%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.sideB img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 1s ease-in-out;
+}
+.articleLink {
+  flex-basis: 100%;
+  font-size: 1em;
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 3em;
+  bottom: -4em;
+}
+.articleLink button {
+  background: white;
+  color: rgb(39, 39, 138);
+  padding: 0.5em 1em;
+  transition: 2s ease-in-out;
+  border: none;
+  font-weight: bold;
+}
+.articleLink button:hover {
+  cursor: pointer;
+}
+.ArticleCard:hover .sideB img {
+  transform: scale(1.2);
+}
+.ArticleCard:hover .articleLink {
+  transform: translateY(-120%);
+}

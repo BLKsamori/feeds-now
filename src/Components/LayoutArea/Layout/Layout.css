@@ -1,0 +1,28 @@
+.Layout {
+  font-size: inherit;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+header {
+  flex-basis: 100%;
+  height: 7%;
+}
+aside {
+  flex-basis: 10%;
+}
+aside,
+main {
+  height: 88%;
+}
+main {
+  flex-basis: 90%;
+}
+footer {
+  flex-basis: 100%;
+  height: 5%;
+}

@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Layout from "./Components/LayoutArea/Layout/Layout";
+import ArticlesContext from "./Context/ArticlesContext";
+import ArticlesReducer from "./Context/ArticlesReducer";
+import ArticlesModel from "./model/ArticlesModel";
 
 function App() {
+  const [articles, setArticles] = useReducer(ArticlesReducer, ArticlesModel);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <BrowserRouter>
+        <ArticlesContext.Provider
+          value={{ articles: articles, setArticles: setArticles }}
         >
-          Learn React
-        </a>
-      </header>
+          <Layout />
+        </ArticlesContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }
