@@ -13,15 +13,17 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <ArticlesContext.Provider
-            value={{ articles: articles, setArticles: setArticles }}
-          >
-            <Layout />
-          </ArticlesContext.Provider>
-        </LocalizationProvider>
-      </BrowserRouter>
+      {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <ArticlesContext.Provider
+          value={{ articles: articles, setArticles: setArticles }}
+        >
+          <Layout />
+        </ArticlesContext.Provider>
+      </LocalizationProvider>
+
+      {/* </BrowserRouter> */}
     </div>
   );
 }
