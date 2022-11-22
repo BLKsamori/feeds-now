@@ -8,7 +8,7 @@ function Routing() {
   return (
     <div className="Routing">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/feeds" element={<Feeds />} />
         <Route path="/about" element={<About />} />

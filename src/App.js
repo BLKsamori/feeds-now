@@ -7,14 +7,13 @@ import ArticlesReducer from "./Context/ArticlesReducer";
 import ArticlesModel from "./model/ArticlesModel";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { HashRouter as Router } from "react-router-dom";
 
 function App() {
   const [articles, setArticles] = useReducer(ArticlesReducer, ArticlesModel);
 
   return (
     <div className="App">
-      {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
-
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <ArticlesContext.Provider
           value={{ articles: articles, setArticles: setArticles }}
@@ -22,8 +21,6 @@ function App() {
           <Layout />
         </ArticlesContext.Provider>
       </LocalizationProvider>
-
-      {/* </BrowserRouter> */}
     </div>
   );
 }
