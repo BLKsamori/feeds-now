@@ -30,7 +30,7 @@ function Layout() {
       .catch((err) => {
         setErr(err.message);
       });
-  }, [setArticles]);
+  }, []);
 
   if ((err, loading)) {
     return <WaitBanner err={err} loading={loading} />;
