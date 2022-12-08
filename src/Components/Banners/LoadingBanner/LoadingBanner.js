@@ -12,6 +12,7 @@ function LoadingBanner() {
   }
   return (
     <div className="LoadingBanner">
+      <div className="backDropDark"></div>
       <div className="banner">
         <h2>Loading...</h2>
         <div className="center">

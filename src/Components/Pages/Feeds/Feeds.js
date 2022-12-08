@@ -3,17 +3,23 @@ import { useContext } from "react";
 import ArticlesList from "../../ArticleArea/ArticlesList/ArticlesList";
 import SearchBar from "../../SearchArea/SearchBar/SearchBar";
 import ArticlesContext from "../../../Context/ArticlesContext";
-import ObjKeysList from "../../../Services/getObjKeys";
+import useCurrentPage from "../../../Services/useCurrentPage";
 
 function Feeds() {
+  useCurrentPage("Feeds");
+
   const { articles } = useContext(ArticlesContext);
   const newArticles = Object.entries(articles.search).length
     ? articles.search
     : articles.dashboard;
+  const finalArticles = Object.entries(newArticles.articles).length
+    ? newArticles.articles
+    : newArticles.sources;
+
   return (
     <div className="Feeds">
       <SearchBar />
-      <ArticlesList articlesList={newArticles} />
+      <ArticlesList articlesList={finalArticles} />
     </div>
   );
 }

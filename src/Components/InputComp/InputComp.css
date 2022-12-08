@@ -1,0 +1,18 @@
+.InputCompWrapper {
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.InputComp {
+  height: 30px;
+  padding: 2px 10px;
+  margin: 1;
+  border: none;
+  background: transparent;
+  display: inline-block;
+}
+.InputComp:focus {
+  border: none;
+}

@@ -1,30 +1,39 @@
 import "./Header.css";
-import Button from "@mui/material/Button";
 import BorderAllIcon from "@mui/icons-material/BorderAll";
 import { Link } from "react-router-dom";
 import UserAvatar from "../../UserAvatar/UserAvatar";
-import { ButtonGroup } from "@mui/material";
-import { Stack } from "@mui/system";
+import Logo from "../../../Assets/logo.png";
+import Btn from "../../UiComponents/Btn/Btn";
+import { useContext } from "react";
+import ArticlesContext from "../../../Context/ArticlesContext";
 
 function Header() {
+  const { articles } = useContext(ArticlesContext);
+  const avatarLoginStyle = {
+    color: "var(--primary)",
+    border: "1px solid var(--primary)",
+    borderRadius: "2px",
+  };
   return (
     <div className="Header">
-      <Button variant="outlined">
+      <Btn>
         <BorderAllIcon />
-      </Button>
+      </Btn>
+
       <Link to="/home">
-        <h1>Feeds Now</h1>
+        <div className="headerMiddle">
+          <img className="logo" src={Logo} />
+          <h1>Feeds Now {articles.currentPage}</h1>
+        </div>
       </Link>
-      <Stack direction="row">
-        <ButtonGroup
-          orientation="vertical"
-          aria-label="vertical outlined button group"
-        >
-          <Button variant="contained">login</Button>
-          <Button variant="outlined">register</Button>
-        </ButtonGroup>
+
+      <div className="AvatarLogin">
+        <div>
+          <Btn title="register" BtnStyle={avatarLoginStyle} />
+          <Btn title="login" BtnStyle={avatarLoginStyle} />
+        </div>
         <UserAvatar />
-      </Stack>
+      </div>
     </div>
   );
 }

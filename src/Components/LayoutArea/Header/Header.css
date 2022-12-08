@@ -7,4 +7,32 @@
   align-items: center;
   justify-content: space-between;
   background: var(--header);
+  box-shadow: var(--card-b-shadow);
+  padding: 0.2em;
+  padding: 0 10px;
+}
+.headerMiddle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+.headerMiddle img.logo {
+  width: 2em;
+  height: 2em;
+}
+.Header h1 {
+  font-family: var(--font1);
+}
+.AvatarLogin {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 10px;
+}
+.AvatarLogin > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }

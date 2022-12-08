@@ -1,4 +1,5 @@
 import { Avatar } from "@mui/material";
+import "./UserAvatar.css";
 
 function UserAvatar({ user }) {
   const userName = user?.name ? user.name : "";

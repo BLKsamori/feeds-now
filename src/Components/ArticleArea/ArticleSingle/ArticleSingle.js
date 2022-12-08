@@ -2,67 +2,70 @@ import { useContext } from "react";
 import ArticlesContext from "../../../Context/ArticlesContext";
 import ACTION_ARTICLES from "../../../Context/ACTION_ARTICLES";
 import "./ArticleSingle.css";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { Card } from "@mui/material";
+import articleDefaultImg from "../../../Assets/articleDefaultImg.png";
+import Btn from "../../UiComponents/Btn/Btn";
 
 function ArticleSingle() {
   const { articles, setArticles } = useContext(ArticlesContext);
   const article = articles.single;
 
+  const articleImg = article.urlToImage
+    ? article.urlToImage
+    : articleDefaultImg;
+
   if (Object.entries(article).length) {
     return (
       <div className="ArticleSingle">
-        <Card variant="outlined">
-          <div className="articleContent">
-            <div className="SingleSideA">
-              <div className="singleHeader">
-                <h5>{article.title}</h5>
-              </div>
-
-              <p>
-                {article.source.id}
-                {article.source.name}
-                {article.id}
-
-                {article.author}
-
-                {article.description}
-                {article.publishedAt}
-                {article.content}
-              </p>
+        <div
+          className="backDropDark"
+          onClick={() =>
+            setArticles({
+              type: ACTION_ARTICLES.RESET_SINGLE,
+            })
+          }
+        ></div>
+        <div className="articleContent">
+          <div className="SingleSideA">
+            <div className="singleHeader">
+              <h2>{article.title}</h2>
             </div>
 
-            <div className="SingleSideB">
-              <img src={article.urlToImage} />
-            </div>
+            <p>
+              {article.source.id}
+              {article.source.name}
+              {article.id}
 
-            <div className="articleLink">
-              <ButtonGroup
-                variant="contained"
-                aria-label="outlined primary button group"
-              >
-                <Button
-                  variant
-                  className="closeBtn"
-                  onClick={() =>
-                    setArticles({
-                      type: ACTION_ARTICLES.RESET_SINGLE,
-                    })
-                  }
-                >
-                  X
-                </Button>
+              {article.author}
 
-                <Button variant="contained">
-                  <a href={article.url} target="_blank noopener">
-                    Go to the Article
-                  </a>
-                </Button>
-              </ButtonGroup>
-            </div>
+              {article.description}
+              {article.publishedAt}
+              {article.content}
+            </p>
           </div>
-        </Card>
+
+          <div className="SingleSideB">
+            <img src={articleImg} alt={article.title} />
+          </div>
+
+          <div className="articleLink">
+            <Btn
+              title="X"
+              className="closeBtn"
+              func={{
+                onClick: () =>
+                  setArticles({
+                    type: ACTION_ARTICLES.RESET_SINGLE,
+                  }),
+              }}
+            />
+
+            <Btn>
+              <a href={article.url} target="_blank noopener">
+                Go to the Article
+              </a>
+            </Btn>
+          </div>
+        </div>
       </div>
     );
   }

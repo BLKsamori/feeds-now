@@ -3,7 +3,7 @@ import LoadingBanner from "../LoadingBanner/LoadingBanner";
 
 function WaitBanner({ err, loading }) {
   if (err) {
-    return <ErrorBanner text={err} />;
+    return <ErrorBanner msg={err} />;
   }
   if (loading) {
     return <LoadingBanner />;

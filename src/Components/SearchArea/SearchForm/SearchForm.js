@@ -1,5 +1,4 @@
-import Button from "@mui/material/Button";
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import ACTION_ARTICLES from "../../../Context/ACTION_ARTICLES";
 import ArticlesContext from "../../../Context/ArticlesContext";
 import FormSearchModel from "../../../model/FormSearchModel";
@@ -8,19 +7,42 @@ import useAxiosSearch from "../../../Services/useAxiosSearch";
 import useForm from "../../../Services/useForm";
 import useUrl from "../../../Services/useUrl";
 import WaitBanner from "../../Banners/WaitBanner/WaitBanner";
-import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import InputComp from "../../InputComp/InputComp";
-import Stack from "@mui/material/Stack";
-
 import "./SearchForm.css";
-import { ButtonGroup } from "@mui/material";
+import Btn from "../../UiComponents/Btn/Btn";
 
 function SearchForm() {
   const { setArticles } = useContext(ArticlesContext);
-  const [handleChanges, data, resetForm] = useForm(
-    FormSearchModel.searchFields
-  );
-  const [checkData, dataStatus, url] = useUrl();
+  const searchTypesModels = FormSearchModel.searchType;
+  const searchFieldsModels = FormSearchModel.searchFields;
+
+  const [searchField, setSearchField] = useState({
+    searchTypeName: "",
+    searchTypeValue: "",
+    arrFields: [],
+    arrFieldModel: [],
+  });
+
+  const getSearchType = (typeName) => {
+    resetForm();
+
+    const newSearchFields = {};
+    const fieldsArr = searchTypesModels[typeName].request;
+    for (const field of fieldsArr) {
+      newSearchFields[field] = { ...searchFieldsModels[field] };
+    }
+    setSearchField({
+      searchTypeName: typeName,
+      searchTypeValue: searchTypesModels[typeName].value,
+      arrFields: ObjToArr(newSearchFields),
+      arrFieldModel: fieldsArr,
+    });
+  };
+
+  const [handleChanges, data, resetForm] = useForm({
+    ...searchFieldsModels,
+  });
+  const [checkData, dataStatus, url] = useUrl(searchField.searchTypeValue);
 
   const params = {
     url: url,
@@ -28,44 +50,67 @@ function SearchForm() {
   };
   const [send, err, loading, requestData] = useAxiosSearch(params);
 
-  useEffect(() => {
-    checkData(data);
-    if (requestData !== undefined) {
-      console.log("requestData");
-      console.log(requestData);
-      setArticles({
-        type: ACTION_ARTICLES.SEARCH,
-        payload: requestData,
-      });
-    }
-  }, [data, loading]);
+  if (searchField.arrFields.length < 1) {
+    const defaultType = ObjToArr(searchTypesModels)[0].name;
+    getSearchType(defaultType);
+  }
 
   const sendForm = (e) => {
     e.preventDefault();
     send();
-    resetForm();
+    checkData(data);
+    if (requestData !== undefined) {
+      setArticles({
+        type: ACTION_ARTICLES.SEARCH,
+        payload: requestData,
+      });
+
+      resetForm();
+    }
   };
 
-  if ((err, loading)) {
+  if (err || loading) {
     return <WaitBanner err={err} loading={loading} />;
   }
 
   return (
     <div className="SearchForm">
+      <div className="searchTypes">
+        <h3>{"search by " + searchField.searchTypeName.toUpperCase()} </h3>
+        {ObjToArr(searchTypesModels).map((st) => (
+          <Btn
+            BtnStyle={{ color: "white", background: "var(--primary)" }}
+            key={st.name}
+            func={{
+              onClick: () => {
+                getSearchType(st.name);
+              },
+            }}
+          >
+            {st.label}
+          </Btn>
+        ))}
+      </div>
       <form onSubmit={sendForm}>
-        <Stack direction="row" spacing={2}>
-          {ObjToArr(FormSearchModel.searchFields).map((input) => (
+        <div className="searchInputs">
+          {searchField.arrFields.map((input) => (
             <InputComp input={input} handle={handleChanges} key={input.name} />
           ))}
-          <ButtonGroup>
-            <Button type="submit" variant="contained">
+          <div className="searchActions">
+            <Btn
+              BtnStyle={{ color: "white", background: "var(--primary)" }}
+              type="submit"
+            >
               Search
-            </Button>
-            <Button onClick={() => resetForm()} variant="contained">
-              <RotateLeftIcon />
-            </Button>
-          </ButtonGroup>
-        </Stack>
+            </Btn>
+            <Btn
+              BtnStyle={{ color: "var(--primary)", background: "white" }}
+              func={{ onClick: () => resetForm() }}
+            >
+              reset
+            </Btn>
+          </div>
+        </div>
       </form>
     </div>
   );

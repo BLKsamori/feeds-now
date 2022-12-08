@@ -8,3 +8,10 @@
   justify-content: space-evenly;
   gap: 1em;
 }
+
+@media screen and (max-width: 767px) {
+  .ArticlesList {
+    flex-direction: column;
+    padding: 1em;
+  }
+}

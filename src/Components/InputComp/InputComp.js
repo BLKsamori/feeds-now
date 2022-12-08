@@ -1,89 +1,80 @@
 import ObjToArr from "../../Services/ObjToArr";
-import { MenuItem, Select, TextField } from "@mui/material";
+import "./InputComp.css";
 
 function InputComp({ input, handle }) {
+  let InputComp = "";
+
   switch (input.type) {
     case "select":
       const options = ObjToArr(input.options);
-      return (
-        <Select
-          variant="outlined"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+      InputComp = (
+        <select
+          className="InputComp"
           name={input.name}
           label={input.label}
           {...handle(input.name)}
         >
           {options.map((opt) => (
-            <MenuItem value={opt.value} key={opt.label}>
-              {opt.label}
-            </MenuItem>
+            <option key={opt.value} value={opt.value}>
+              {opt?.label ? opt.label : opt.name}
+            </option>
           ))}
-        </Select>
+        </select>
       );
+      break;
+
     case "date":
-      return (
-        <TextField
-          variant="outlined"
-          id="date"
-          label={input.label}
+      InputComp = (
+        <input
           type="date"
+          label={input.label}
           name={input.name}
-          // defaultValue="2017-05-24"
           {...handle(input.name)}
-          sx={{ width: 220 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
+          className="InputComp"
         />
       );
+      break;
 
     case "time":
-      return (
-        <TextField
-          variant="outlined"
-          id="time"
-          label={input.label}
+      InputComp = (
+        <input
           type="time"
+          label={input.label}
           name={input.name}
           // defaultValue="07:30"
           {...handle(input.name)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 300, // 5 min
-          }}
-          sx={{ width: 150 }}
+          className="InputComp"
         />
       );
+      break;
+
     case "local-Date":
-      return (
-        <TextField
-          variant="outlined"
-          id="datetime-local"
+      InputComp = (
+        <input
+          type="datetime-local"
+          className="InputComp"
           label={input.label}
           name={input.name}
-          type="datetime-local"
           // defaultValue="2017-05-24T10:30"
           {...handle(input.name)}
-          sx={{ width: 250 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
         />
       );
+      break;
 
     default:
-      return (
-        <TextField
-          id="outlined-name"
+      InputComp = (
+        <input
+          type="text"
           name={input.name}
-          label="Name"
+          placeholder={input.name}
           {...handle(input.name)}
+          className="InputComp"
         />
       );
+      break;
   }
+
+  return <div className="InputCompWrapper">{InputComp}</div>;
 }
 
 export default InputComp;

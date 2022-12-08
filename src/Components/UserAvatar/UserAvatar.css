@@ -1,0 +1,4 @@
+.UserAvatar {
+  display: flex;
+  flex-direction: row;
+}

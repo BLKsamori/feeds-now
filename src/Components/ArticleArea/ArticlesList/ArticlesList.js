@@ -1,17 +1,18 @@
 import ArticleCard from "../ArticleCard/ArticleCard";
 import ArticleSingle from "../ArticleSingle/ArticleSingle";
+import ArticlesNotFound from "../ArticlesNotFound/ArticlesNotFound";
 import "./ArticlesList.css";
 
 function ArticlesList({ articlesList }) {
-  if (!Object.keys(articlesList).length) {
+  if (!articlesList) {
     return <span>empty</span>;
   }
-  const allArticles = [...articlesList.articles];
 
   return (
     <div className="ArticlesList">
       <ArticleSingle />
-      {allArticles.map((art, index) => (
+      {articlesList.length < 1 && <ArticlesNotFound />}
+      {articlesList.map((art, index) => (
         <ArticleCard article={art} key={index} />
       ))}
     </div>

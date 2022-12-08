@@ -1,46 +1,41 @@
 import { useState } from "react";
 import appConfig from "../Config/AppConfig";
 
-function useUrl() {
+function useUrl(typeOfInfo) {
   const [dataStatus, setDataStatus] = useState(false);
   const [url, setUrl] = useState("");
   // https://newsapi.org/v2/top-headlines?country=us&apiKey=API_KEY
   const checkData = (data) => {
     setDataStatus(true);
-    console.log("checkData");
-    console.log(data);
-    console.log("--checkData");
-    for (const key in data) {
-      const val = data[key];
-      switch (key) {
-        case "question":
-          if (val === "" || isNaN(val) || val === undefined) {
-            setDataStatus(false);
-            console.log("question NAN");
-            console.log(val);
-          }
-          break;
-
-        case "Info":
-          if (val === "" || isNaN(val) || val === undefined) {
-            setDataStatus(false);
-            console.log("Info NAN");
-          }
-          break;
-
-        default:
-          break;
-      }
+    if (!typeOfInfo) {
+      setDataStatus(false);
+      return;
     }
 
-    const Info = "/" + data?.Info;
-    const question = data?.question ? "?q=" + data?.question : "";
-    const sortBy = data?.sortBy ? "&sortBy=" + data?.sortBy : "";
-    const sources = data?.sources ? "sources=" + data?.sources : "";
-    const category = data?.category ? "category=" + data?.category : "";
-    const newUrl = Info + question + sortBy + sources + category;
+    // (" https://newsapi.org/v2/everything?q=apple&from=2022-12-05&to=2022-12-05&sortBy=popularity&apiKey=");
+
+    const InfoType = "/" + typeOfInfo + "/";
+    const question = data?.question ? "q=" + data.question : "";
+    const from = data?.from ? "&from=" + data.from : "";
+    const to = data?.to ? "&to=" + data.to : "";
+    const sortBy = data?.sortBy ? "&sortBy=" + data.sortBy : "";
+    const sources = data?.sources ? "&sources=" + data.sources : "";
+    const category = data?.category ? "&category=" + data.category : "";
+    const language = data?.language ? "&category=" + data.language : "";
+    const country = data?.country ? "&country=" + data.country : "";
+    const newUrl =
+      InfoType +
+      "?" +
+      question +
+      from +
+      to +
+      sortBy +
+      sources +
+      language +
+      category +
+      country;
     const finalUrl = appConfig.baseUrl + newUrl + appConfig.APIkey;
-    console.log(finalUrl);
+
     setUrl(finalUrl);
   };
   return [checkData, dataStatus, url];

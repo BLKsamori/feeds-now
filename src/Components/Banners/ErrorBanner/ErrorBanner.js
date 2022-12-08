@@ -18,6 +18,7 @@ function ErrorBanner({ msg }) {
 
   return (
     <div className="ErrorBanner">
+      <div className="backDropDark"></div>
       <div className="message">
         <h2>Error</h2>
         <span>{msg ? msg : defaultMsg}</span>

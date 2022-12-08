@@ -1,0 +1,8 @@
+.Btn {
+  display: inline-block;
+}
+
+.disabledBtn {
+  color: gray;
+  background-color: red;
+}

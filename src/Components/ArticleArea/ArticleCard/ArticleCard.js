@@ -2,12 +2,40 @@ import { useContext } from "react";
 import ACTION_ARTICLES from "../../../Context/ACTION_ARTICLES";
 import ArticlesContext from "../../../Context/ArticlesContext";
 import "./ArticleCard.css";
-import Button from "@mui/material/Button";
+import articleDefaultImg from "../../../Assets/articleDefaultImg.png";
+import Btn from "../../UiComponents/Btn/Btn";
 
 function ArticleCard({ article }) {
   const { setArticles } = useContext(ArticlesContext);
+  const articleImg = article.urlToImage
+    ? article.urlToImage
+    : articleDefaultImg;
+
   return (
     <div className="ArticleCard">
+      {article.bookDay && (
+        <div className="bookDate">
+          <span>Booked on: {article.bookDay}</span>
+          <Btn
+            BtnStyle={{
+              background: "var(--primary)",
+              color: "white",
+              width: "10px",
+              height: "20px",
+            }}
+            func={{
+              onClick: () =>
+                setArticles({
+                  type: ACTION_ARTICLES.REMOVE_ARTICLE_BOOKMARKS,
+                  payload: article.title,
+                }),
+            }}
+          >
+            X
+          </Btn>
+        </div>
+      )}
+
       <div className="sideA">
         <h5>{article.title}</h5>
         <p>
@@ -24,24 +52,44 @@ function ArticleCard({ article }) {
       </div>
 
       <div className="sideB">
-        <img src={article.urlToImage} />
+        <img src={articleImg} alt={article.title} />
       </div>
 
       <div className="articleLink">
-        <div>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() =>
+        <Btn
+          func={{
+            onClick: () =>
               setArticles({
                 type: ACTION_ARTICLES.SINGLE,
                 payload: article,
-              })
-            }
-          >
-            Read More...
-          </Button>
-        </div>
+              }),
+          }}
+        >
+          Read More...
+        </Btn>
+
+        {!article.bookDay && (
+          <Btn
+            BtnStyle={{
+              width: "20px",
+              height: "20px",
+              backgroundColor: "transparent",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              border: "none",
+              filter: "contras(10)",
+              backgroundImage:
+                "url(https://cdn-icons-png.flaticon.com/512/758/758688.png)",
+            }}
+            func={{
+              onClick: () =>
+                setArticles({
+                  type: ACTION_ARTICLES.ADD_ARTICLE_BOOKMARKS,
+                  payload: article,
+                }),
+            }}
+          ></Btn>
+        )}
       </div>
     </div>
   );

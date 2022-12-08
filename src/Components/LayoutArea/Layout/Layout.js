@@ -21,7 +21,6 @@ function Layout() {
     axios
       .get(appConfig.defaultReq)
       .then((response) => {
-        console.log(response);
         setArticles({
           type: ACTION_ARTICLES.DASHBOARD,
           payload: response.data,
@@ -29,7 +28,6 @@ function Layout() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err.message);
         setErr(err.message);
       });
   }, [setArticles]);

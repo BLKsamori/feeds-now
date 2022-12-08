@@ -1,4 +1,6 @@
 const ArticlesModel = {
+  bookmarks: {},
+  currentPage: "",
   single: [],
   dashboard: {},
   search: {},

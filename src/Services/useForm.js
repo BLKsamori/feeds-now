@@ -9,8 +9,7 @@ function useForm(model) {
   const updateValue = (e) => {
     const val = e.target.value;
     const name = e.target.name;
-    console.log({ val });
-    console.log({ name });
+
     let newVal = { ...fieldVal };
     newVal[name].value = val;
 
@@ -47,8 +46,6 @@ function useForm(model) {
       newData[key] = fieldVal[key].value;
     }
     setData(newData);
-    console.log("data");
-    console.log(data);
   };
 
   const resetForm = () => {
