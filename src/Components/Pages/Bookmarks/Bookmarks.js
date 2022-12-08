@@ -4,6 +4,7 @@ import ArticlesList from "../../ArticleArea/ArticlesList/ArticlesList";
 import ArticlesContext from "../../../Context/ArticlesContext";
 import useCurrentPage from "../../../Services/useCurrentPage";
 import ObjToArr from "../../../Services/ObjToArr";
+import ArticlesNotFound from "../../ArticleArea/ArticlesNotFound/ArticlesNotFound";
 
 function Bookmarks() {
   useCurrentPage("Bookmarks");
@@ -19,7 +20,14 @@ function Bookmarks() {
       {articleBookmarks ? (
         <ArticlesList articlesList={articleBookmarks} />
       ) : (
-        <div>add some material form the feed page</div>
+        <ArticlesNotFound
+          msg={
+            <>
+              Please , Add some material form <br /> <b> Feed page</b>.
+            </>
+          }
+          msgHead={"No Bookmarks"}
+        />
       )}
     </div>
   );

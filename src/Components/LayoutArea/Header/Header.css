@@ -36,3 +36,9 @@
   align-items: center;
   gap: 2px;
 }
+
+@media screen and (max-width: 460px) {
+  .Header {
+    font-size: 0.5em;
+  }
+}

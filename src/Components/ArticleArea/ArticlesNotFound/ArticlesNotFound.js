@@ -1,12 +1,15 @@
 import "./ArticlesNotFound.css";
 
-function ArticlesNotFound() {
+function ArticlesNotFound({ msg, msgHead }) {
   return (
     <div className="ArticlesNotFound">
       <div className="ArticlesNotFoundMSG">
-        <h3> Sorry,</h3>
-        There was no intel for the parameters. Please try again with deferent
-        parameters.
+        <h3>{msgHead ? msgHead : " Sorry"},</h3>
+        <span>
+          {msg
+            ? msg
+            : "There was no intel for the parameters. Please try again with deferent parameters."}
+        </span>
       </div>
     </div>
   );

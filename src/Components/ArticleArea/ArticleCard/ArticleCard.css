@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* border: 0.1em solid black; */
+  border: 0.1em solid var(--card-col);
   position: relative;
   overflow: hidden;
   background: var(--card-col);
@@ -88,8 +88,8 @@
 @media screen and (max-width: 767px) {
   .ArticleCard {
     --car-tablet: 10em;
-    flex-basis: 100%;
-    width: 95%;
+    flex-basis: 95%;
+    width: 100%;
     max-height: var(--car-tablet);
   }
   .sideB img {

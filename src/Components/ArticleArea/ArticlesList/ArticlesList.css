@@ -5,13 +5,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   gap: 1em;
 }
 
 @media screen and (max-width: 767px) {
   .ArticlesList {
-    flex-direction: column;
+    flex-direction: row;
     padding: 1em;
   }
 }

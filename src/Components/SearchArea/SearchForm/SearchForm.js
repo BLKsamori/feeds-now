@@ -79,7 +79,7 @@ function SearchForm() {
         <h3>{"search by " + searchField.searchTypeName.toUpperCase()} </h3>
         {ObjToArr(searchTypesModels).map((st) => (
           <Btn
-            BtnStyle={{ color: "white", background: "var(--primary)" }}
+            BtnStyle={{ color: "white", background: "var(--darken)" }}
             key={st.name}
             func={{
               onClick: () => {
