@@ -10,20 +10,21 @@ import { useState } from "react";
 
 function Aside() {
   const [openTray, setOpenTray] = useState(true);
-
-  const NavWidth = openTray ? "none" : "flex";
   const NavBtnStyle = {
     width: "100%",
     background: "transparent",
     color: "white",
     borderBottom: "1px solid white",
-    display: NavWidth,
-    alignItem: "start",
-    gap: "15px",
+    display: "flex",
+    fontSize: "10px",
+    // alignItems: "center",
+    gap: "10px",
   };
-
+  const navCLick = {
+    onClick: () => setOpenTray(!openTray),
+  };
   return (
-    <div className="Aside">
+    <div className={openTray ? "Aside" : "Aside close"}>
       <Btn
         BtnStyle={{
           display: "flex",
@@ -38,33 +39,37 @@ function Aside() {
           onClick: () => setOpenTray(!openTray),
         }}
       >
-        <BorderAllIcon />
+        <BorderAllIcon {...navCLick} />
       </Btn>
       <div component="nav" aria-label="mailbox folders">
         <Link to="/home">
-          <Btn title="Home" BtnStyle={NavBtnStyle}>
+          <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
             <HomeIcon />
+            <span>Home</span>
           </Btn>
         </Link>
 
         <Divider />
 
         <Link to="/feeds">
-          <Btn title="Feeds" BtnStyle={NavBtnStyle}>
+          <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
             <NewspaperIcon />
+            <span>Feeds</span>
           </Btn>
         </Link>
         <Link to="/bookmarks">
-          <Btn title="BookMarks" BtnStyle={NavBtnStyle}>
+          <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
             <NewspaperIcon />
+            <span>BookMarks</span>
           </Btn>
         </Link>
 
         <Divider />
 
         <Link to="/about">
-          <Btn title="About" BtnStyle={NavBtnStyle}>
+          <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
             <InfoIcon />
+            <span>About</span>
           </Btn>
         </Link>
       </div>

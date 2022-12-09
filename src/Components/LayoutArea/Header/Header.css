@@ -1,6 +1,6 @@
 .Header {
   font-size: inherit;
-  width: 100%;
+  width: auto;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -9,12 +9,16 @@
   background: var(--header);
   box-shadow: var(--card-b-shadow);
   padding: 0.2em;
-  padding: 0 10px;
+  padding: 0px 20px;
 }
+
 .headerMiddle {
+  flex-basis: 80%;
+  justify-self: center;
   display: flex;
   flex-direction: row;
   align-items: center;
+
   gap: 1em;
 }
 .headerMiddle img.logo {
@@ -25,18 +29,16 @@
   font-family: var(--font1);
 }
 .AvatarLogin {
+  flex-basis: 20%;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   gap: 10px;
+  justify-self: flex-end;
 }
-.AvatarLogin > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+.AvatarLogin:hover {
+  cursor: pointer;
 }
-
 @media screen and (max-width: 460px) {
   .Header {
     font-size: 0.5em;

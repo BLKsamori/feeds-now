@@ -12,7 +12,7 @@ import "./SearchForm.css";
 import Btn from "../../UiComponents/Btn/Btn";
 
 function SearchForm() {
-  const { setArticles } = useContext(ArticlesContext);
+  const { articles, setArticles } = useContext(ArticlesContext);
   const searchTypesModels = FormSearchModel.searchType;
   const searchFieldsModels = FormSearchModel.searchFields;
 
@@ -59,10 +59,16 @@ function SearchForm() {
     e.preventDefault();
     send();
     checkData(data);
+
     if (requestData !== undefined) {
+      console.log("requestData", requestData);
       setArticles({
         type: ACTION_ARTICLES.SEARCH,
         payload: requestData,
+      });
+      setArticles({
+        type: ACTION_ARTICLES.SEARCH_KEYWORD,
+        payload: data?.question ? data.question : "",
       });
 
       resetForm();
@@ -76,7 +82,7 @@ function SearchForm() {
   return (
     <div className="SearchForm">
       <div className="searchTypes">
-        <h3>{"search by " + searchField.searchTypeName.toUpperCase()} </h3>
+        <h3>{searchField.searchTypeName.toUpperCase()}</h3>
         {ObjToArr(searchTypesModels).map((st) => (
           <Btn
             BtnStyle={{ color: "white", background: "var(--darken)" }}
@@ -91,11 +97,14 @@ function SearchForm() {
           </Btn>
         ))}
       </div>
+
       <form onSubmit={sendForm}>
         <div className="searchInputs">
           {searchField.arrFields.map((input) => (
             <InputComp input={input} handle={handleChanges} key={input.name} />
           ))}
+          <h2>{articles?.keyWordSearched ? articles?.keyWordSearched : ""} </h2>
+
           <div className="searchActions">
             <Btn
               BtnStyle={{ color: "white", background: "var(--primary)" }}

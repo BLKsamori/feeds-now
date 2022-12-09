@@ -35,7 +35,7 @@ function useUrl(typeOfInfo) {
       category +
       country;
     const finalUrl = appConfig.baseUrl + newUrl + appConfig.APIkey;
-
+    console.log("finalUrl", finalUrl);
     setUrl(finalUrl);
   };
   return [checkData, dataStatus, url];

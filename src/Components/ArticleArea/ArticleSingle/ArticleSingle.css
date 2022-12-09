@@ -19,7 +19,7 @@
   position: relative;
   width: 60vw;
   height: 80vh;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--darken);
   border-radius: 2px;
   background: var(--card-col);
   box-shadow: var(--card-b-shadow);
@@ -28,7 +28,9 @@
   align-items: center;
   justify-content: flex-start;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 10px;
+  border-radius: 5px;
 }
 .singleHeader {
   position: relative;
@@ -39,17 +41,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 900;
 }
 .singleHeader > h2 {
-  color: var(--primary);
+  color: var(--darken);
   text-align: center;
   width: 100%;
-  padding: 10px 0;
+  margin-bottom: 20px;
 }
-.ArticleSingle .closeBtn {
-  padding: 1em 0.5em;
-}
+
 .SingleSideA,
 .SingleSideB {
   display: flex;
@@ -91,12 +90,13 @@
   width: 100%;
   height: 3em;
   bottom: 0em;
+  left: 1;
   display: flex;
   flex-direction: row;
-  left: 0%;
-  padding: 20px 0;
+  /* padding: 20px 0; */
   align-items: center;
   justify-content: center;
+  opacity: 1;
 }
 .ArticleSingle .articleLink button {
   background: white;
@@ -116,4 +116,11 @@
 }
 .ArticleSingle .ArticleSingle:hover .articleLink {
   transform: translateY(-120%);
+}
+@media screen and (max-width: 767px) {
+  .ArticleSingle .articleContent {
+    width: 80vw;
+  }
+  .ArticleSingle .articleLink {
+  }
 }

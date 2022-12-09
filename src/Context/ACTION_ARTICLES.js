@@ -1,4 +1,5 @@
 const ACTION_ARTICLES = {
+  SEARCH_KEYWORD: "search key word",
   ADD_ARTICLE_BOOKMARKS: "add article to bookmarks",
   REMOVE_ARTICLE_BOOKMARKS: "remove article to bookmarks",
   CURRENT_PAGE: "current page",

@@ -54,10 +54,10 @@ const FormSearchModel = {
           label: "popularity",
           value: "popularity",
         },
-        publishedAt: {
-          label: "published at",
-          value: "publishedAt",
-        },
+        // publishedAt: {
+        //   label: "published at",
+        //   value: "publishedAt",
+        // },
       },
       validate: {
         empty: { val: "" || false, msg: "you have to choose one." },

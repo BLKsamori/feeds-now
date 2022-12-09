@@ -25,12 +25,13 @@ function Layout() {
           type: ACTION_ARTICLES.DASHBOARD,
           payload: response.data,
         });
+
         setLoading(false);
       })
       .catch((err) => {
         setErr(err.message);
       });
-  }, []);
+  }, [setArticles]);
 
   if ((err, loading)) {
     return <WaitBanner err={err} loading={loading} />;
@@ -41,6 +42,7 @@ function Layout() {
       <header>
         <Header />
       </header>
+
       <aside>
         <Aside />
       </aside>

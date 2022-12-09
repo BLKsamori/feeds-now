@@ -6,3 +6,24 @@
   display: flex;
   flex-direction: column;
 }
+.Aside button {
+  display: flex;
+  align-items: center;
+}
+.Aside button:hover {
+  cursor: pointer;
+}
+.Aside.close button > span {
+  transition: 1s ease-in-out;
+}
+
+@media screen and (max-width: 767px) {
+  .Aside.close button > span {
+    display: none;
+  }
+  .Aside.close button {
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+  }
+}

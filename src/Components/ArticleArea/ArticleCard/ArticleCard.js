@@ -18,10 +18,12 @@ function ArticleCard({ article }) {
           <span>Booked on: {article.bookDay}</span>
           <Btn
             BtnStyle={{
-              background: "var(--primary)",
+              background: "transparent",
               color: "white",
-              width: "10px",
-              height: "20px",
+              width: "auto",
+              height: "100%",
+              fontSize: "10px",
+              margin: "0 10px",
             }}
             func={{
               onClick: () =>
@@ -53,43 +55,42 @@ function ArticleCard({ article }) {
 
       <div className="sideB">
         <img src={articleImg} alt={article.title} />
-      </div>
-
-      <div className="articleLink">
-        <Btn
-          func={{
-            onClick: () =>
-              setArticles({
-                type: ACTION_ARTICLES.SINGLE,
-                payload: article,
-              }),
-          }}
-        >
-          Read More...
-        </Btn>
-
-        {!article.bookDay && (
+        <div className="articleLink">
           <Btn
-            BtnStyle={{
-              width: "20px",
-              height: "20px",
-              backgroundColor: "transparent",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              border: "none",
-              filter: "contras(10)",
-              backgroundImage:
-                "url(https://cdn-icons-png.flaticon.com/512/758/758688.png)",
-            }}
             func={{
               onClick: () =>
                 setArticles({
-                  type: ACTION_ARTICLES.ADD_ARTICLE_BOOKMARKS,
+                  type: ACTION_ARTICLES.SINGLE,
                   payload: article,
                 }),
             }}
-          ></Btn>
-        )}
+          >
+            Read More...
+          </Btn>
+
+          {!article.bookDay && (
+            <Btn
+              BtnStyle={{
+                width: "20px",
+                height: "20px",
+                backgroundColor: "transparent",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                filter: "contras(10)",
+                backgroundImage:
+                  "url(https://cdn-icons-png.flaticon.com/512/758/758688.png)",
+              }}
+              func={{
+                onClick: () =>
+                  setArticles({
+                    type: ACTION_ARTICLES.ADD_ARTICLE_BOOKMARKS,
+                    payload: article,
+                  }),
+              }}
+            ></Btn>
+          )}
+        </div>
       </div>
     </div>
   );

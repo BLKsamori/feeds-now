@@ -4,6 +4,7 @@ import ACTION_ARTICLES from "../../../Context/ACTION_ARTICLES";
 import "./ArticleSingle.css";
 import articleDefaultImg from "../../../Assets/articleDefaultImg.png";
 import Btn from "../../UiComponents/Btn/Btn";
+import RegexList from "../../../Services/RegexList";
 
 function ArticleSingle() {
   const { articles, setArticles } = useContext(ArticlesContext);
@@ -39,7 +40,8 @@ function ArticleSingle() {
 
               {article.description}
               {article.publishedAt}
-              {article.content}
+              {article?.content &&
+                article.content.replace(RegexList.replaceEndContent, "")}
             </p>
           </div>
 
@@ -60,7 +62,11 @@ function ArticleSingle() {
             />
 
             <Btn>
-              <a href={article.url} target="_blank noopener">
+              <a
+                href={article.url}
+                target="_blank noopener"
+                style={{ color: "var(--primary)" }}
+              >
                 Go to the Article
               </a>
             </Btn>

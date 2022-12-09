@@ -9,6 +9,14 @@ const removeSpecialRegex = /[" \.\\!@#$%^&*(()_+-=,<>?:':;\[\]`~]/g;
 
 function ArticlesReducer(state, action) {
   switch (action.type) {
+    case ACTION_ARTICLES.SEARCH_KEYWORD:
+      const keyWord = action.payload;
+      const newStateKeyword = {
+        ...state,
+        keyWordSearched: keyWord,
+      };
+
+      return newStateKeyword;
     case ACTION_ARTICLES.ADD_ARTICLE_BOOKMARKS:
       const todayDate = new Date().toLocaleString();
       const allBookmarks = { ...state.bookmarks };

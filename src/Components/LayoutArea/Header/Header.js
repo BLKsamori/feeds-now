@@ -22,13 +22,9 @@ function Header() {
         </div>
       </Link>
 
-      {/* <div className="AvatarLogin">
-        <div>
-          <Btn title="register" BtnStyle={avatarLoginStyle} />
-          <Btn title="login" BtnStyle={avatarLoginStyle} />
-        </div>
+      <div className="AvatarLogin">
         <UserAvatar />
-      </div> */}
+      </div>
     </div>
   );
 }
