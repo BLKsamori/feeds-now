@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { List, ListItem, ListItemText, Divider } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import InfoIcon from "@mui/icons-material/Info";
 import HomeIcon from "@mui/icons-material/Home";
@@ -16,8 +15,9 @@ function Aside() {
     color: "white",
     borderBottom: "1px solid white",
     display: "flex",
+    flexDirection: "row",
     fontSize: "10px",
-    // alignItems: "center",
+    alignItems: "center",
     gap: "10px",
   };
   const navCLick = {
@@ -49,8 +49,6 @@ function Aside() {
           </Btn>
         </Link>
 
-        <Divider />
-
         <Link to="/feeds">
           <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
             <NewspaperIcon />
@@ -63,8 +61,6 @@ function Aside() {
             <span>BookMarks</span>
           </Btn>
         </Link>
-
-        <Divider />
 
         <Link to="/about">
           <Btn BtnStyle={NavBtnStyle} func={{ ...navCLick }}>
