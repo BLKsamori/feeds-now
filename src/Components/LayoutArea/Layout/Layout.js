@@ -12,8 +12,8 @@ import "./Layout.css";
 
 function Layout() {
   const { setArticles } = useContext(ArticlesContext);
-  const [err, setErr] = useState();
-  const [loading, setLoading] = useState();
+  const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
