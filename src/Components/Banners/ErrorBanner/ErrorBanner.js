@@ -22,6 +22,7 @@ function ErrorBanner({ msg }) {
       <div className="message">
         <h2>Error</h2>
         <span>{msg ? msg : defaultMsg}</span>
+        <br />
         <button onClick={() => setErrGone(true)}>Take Me Home</button>
       </div>
     </div>
