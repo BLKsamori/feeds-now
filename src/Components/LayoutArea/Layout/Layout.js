@@ -33,7 +33,7 @@ function Layout() {
       });
   }, []);
 
-  if ((err, loading)) {
+  if (err.length || loading) {
     return <WaitBanner err={err} loading={loading} />;
   }
 
